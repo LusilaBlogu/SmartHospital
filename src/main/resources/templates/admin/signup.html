@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Signup</title>
+</head>
+<body>
+<h1>Regjistrim për Admin</h1>
+
+<!-- Shfaq mesazhet e gabimit nga RedirectAttributes -->
+<div th:if="${error}" th:text="${error}" style="color: red;"></div>
+
+<form th:action="@{/admin/signup}" th:object="${admin}" method="post">
+    <div>
+        <label for="name">Emri:</label>
+        <input type="text" id="name" th:field="*{name}" required />
+    </div>
+    <div>
+        <label for="userName">Username:</label>
+        <input type="text" id="userName" th:field="*{userName}" required />
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" th:field="*{email}" required />
+    </div>
+    <div>
+        <label for="password">Fjalëkalimi:</label>
+        <input type="password" id="password" th:field="*{password}" required />
+    </div>
+    <div>
+        <button type="submit">Regjistrohu</button>
+    </div>
+</form>
+<br>
+<a th:href="@{/admin/login}">Ke tashmë një llogari? Hyr këtu</a>
+</body>
+</html>

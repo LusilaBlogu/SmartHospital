@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+<h1>Mirë se erdhe në Panelin e Adminit</h1>
+
+<!-- Shfaq email-in e përdoruesit të loguar -->
+<p>
+    I loguar si: <strong sec:authentication="name">example@email.com</strong>
+</p>
+
+<p>Kjo është një faqe e mbrojtur.</p>
+
+<!-- Formulari për logout (mënyra më e sigurt është me POST) -->
+<form th:action="@{/admin/logout}" method="post">
+    <button type="submit">Dil (Logout)</button>
+</form>
+</body>
+</html>
