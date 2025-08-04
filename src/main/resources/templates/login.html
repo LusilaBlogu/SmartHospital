@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Hospital - Login</title>
+
+    <!-- External CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Local CSS -->
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<div class="login-container">
+    <!-- Background Elements -->
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- Login Card -->
+    <div class="login-card">
+        <!-- Header -->
+        <div class="login-header">
+            <div class="logo">
+                <i class="fas fa-hospital"></i>
+            </div>
+            <h1>Smart Hospital</h1>
+            <p>Sistemi i Menaxhimit të Spitalit</p>
+        </div>
+
+        <!-- Alert Messages -->
+        <div id="loginAlert" class="alert error">
+            <i class="fas fa-exclamation-circle"></i>
+            <span id="loginMessage"></span>
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm" class="login-form">
+            <div class="form-group">
+                <label for="email">
+                    <i class="fas fa-envelope"></i>
+                    Email
+                </label>
+                <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Shkruani email-in tuaj"
+                        required
+                        autocomplete="email"
+                >
+                <div class="error-message" id="emailError"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">
+                    <i class="fas fa-lock"></i>
+                    Fjalëkalimi
+                </label>
+                <div class="password-input">
+                    <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Shkruani fjalëkalimin tuaj"
+                            required
+                            autocomplete="current-password"
+                    >
+                    <button type="button" class="password-toggle" onclick="togglePassword()">
+                        <i class="fas fa-eye" id="passwordToggleIcon"></i>
+                    </button>
+                </div>
+                <div class="error-message" id="passwordError"></div>
+            </div>
+
+            <div class="form-options">
+                <label class="checkbox-container">
+                    <input type="checkbox" id="rememberMe" name="rememberMe">
+                    <span class="checkmark"></span>
+                    Më mbaj në mend
+                </label>
+                <a href="#" class="forgot-password" onclick="showForgotPassword()">
+                    Harruat fjalëkalimin?
+                </a>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-login" id="loginButton">
+                <span class="btn-text">Hyr në sistem</span>
+                <div class="btn-loader" style="display: none;">
+                    <i class="fas fa-spinner fa-spin"></i>
+                </div>
+            </button>
+        </form>
+
+        <!-- Register Link -->
+        <div class="register-link">
+            <p>Nuk keni llogari? <a href="#" onclick="showRegister()">Regjistrohuni këtu</a></p>
+        </div>
+
+        <!-- Footer -->
+        <div class="login-footer">
+            <p>&copy; 2024 Smart Hospital. Të gjitha të drejtat e rezervuara.</p>
+        </div>
+    </div>
+
+    <!-- Side Info Panel -->
+    <div class="info-panel">
+        <div class="info-content">
+            <h2>Mirë se vini në Smart Hospital</h2>
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-user-md"></i>
+                    <h3>Menaxhimi i Stafit</h3>
+                    <p>Organizoni dhe menaxhoni doktorët dhe infermierët e spitalit</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-procedures"></i>
+                    <h3>Regjistri i Pacientëve</h3>
+                    <p>Mbani evidencën e plotë të pacientëve dhe historikun mjekësor</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>Raporte dhe Statistika</h3>
+                    <p>Monitoroni performancën dhe gjeneroni raporte të detajuara</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Register Modal -->
+<div id="registerModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3><i class="fas fa-user-plus"></i> Regjistro Admin të Ri</h3>
+            <button class="close" onclick="closeRegisterModal()">&times;</button>
+        </div>
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="regName">Emri i Plotë</label>
+                <input type="text" id="regName" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="regUsername">Username</label>
+                <input type="text" id="regUsername" name="userName" required>
+            </div>
+            <div class="form-group">
+                <label for="regEmail">Email</label>
+                <input type="email" id="regEmail" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="regPassword">Fjalëkalimi</label>
+                <input type="password" id="regPassword" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="regConfirmPassword">Konfirmo Fjalëkalimin</label>
+                <input type="password" id="regConfirmPassword" name="confirmPassword" required>
+            </div>
+            <div class="actions">
+                <button type="button" class="btn btn-warning" onclick="closeRegisterModal()">Anulo</button>
+                <button type="submit" class="btn btn-success">Regjistrohu</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Forgot Password Modal -->
+<div id="forgotPasswordModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3><i class="fas fa-key"></i> Rivendos Fjalëkalimin</h3>
+            <button class="close" onclick="closeForgotPasswordModal()">&times;</button>
+        </div>
+        <form id="forgotPasswordForm">
+            <div class="form-group">
+                <label for="forgotEmail">Email</label>
+                <input type="email" id="forgotEmail" name="email" placeholder="Shkruani email-in tuaj" required>
+            </div>
+            <p class="text-muted">Do t'ju dërgojmë një link për të rivendosur fjalëkalimin në email-in tuaj.</p>
+            <div class="actions">
+                <button type="button" class="btn btn-warning" onclick="closeForgotPasswordModal()">Anulo</button>
+                <button type="submit" class="btn btn-primary">Dërgo Linkin</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- JavaScript Files -->
+<script src="js/utils/config.js"></script>
+<script src="js/utils/helpers.js"></script>
+<script src="js/api/apiService.js"></script>
+<script src="js/api/adminApi.js"></script>
+<script src="js/auth/auth.js"></script>
+<script src="js/auth/session.js"></script>
+<script src="js/components/alerts.js"></script>
+<script src="js/login.js"></script>
+</body>
+</html>
