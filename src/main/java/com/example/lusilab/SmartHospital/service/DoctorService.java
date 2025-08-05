@@ -1,17 +1,17 @@
 package com.example.lusilab.SmartHospital.service;
 
-import com.example.lusilab.SmartHospital.entity.Appointment;
-import com.example.lusilab.SmartHospital.entity.Diagnosis;
-import com.example.lusilab.SmartHospital.entity.Prescription;
+import com.example.lusilab.SmartHospital.entity.*;
 import com.example.lusilab.SmartHospital.exception.ResourceNotFoundException;
 import com.example.lusilab.SmartHospital.repository.AppointmentRepository;
 import com.example.lusilab.SmartHospital.repository.DiagnosisRepository;
+import com.example.lusilab.SmartHospital.repository.DoctorRepository;
 import com.example.lusilab.SmartHospital.repository.PrescriptionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DoctorService {
@@ -19,7 +19,18 @@ public class DoctorService {
     private final AppointmentRepository appointmentRepository;
     private final PrescriptionRepository prescriptionRepository;
     private final DiagnosisRepository diagnosisRepository;
+    private DoctorRepository doctorRepository;
 
+    public Optional<Doctor> login(String email, String password) {
+        return doctorRepository.findByEmailAndPassword(email, password);
+    }
+    public boolean existsByEmail(String email) {
+        return doctorRepository.existsByEmail(email);
+    }
+
+    public void saveDoctor(Doctor doctor) {
+        doctorRepository.save(doctor);
+    }
 
     @Autowired
     public DoctorService(AppointmentRepository appointmentRepository,

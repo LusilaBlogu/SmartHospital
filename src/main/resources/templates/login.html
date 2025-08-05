@@ -1,41 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Admin Login</title>
-</head>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Login</title></head>
 <body>
-<h1>Admin Login</h1>
-
-<!-- Mesazh për login të gabuar -->
-<div th:if="${param.error}" style="color: red;">
-    Email-i ose fjalëkalimi i gabuar.
-</div>
-
-<!-- Mesazh pas logout-it -->
-<div th:if="${param.logout}" style="color: green;">
-    Ju keni dalë me sukses.
-</div>
-
-<!-- Mesazh pas regjistrimit të suksesshëm -->
-<div th:if="${signupSuccess}" th:text="${signupSuccess}" style="color: green;">
-</div>
-
-<!-- Formulari i login-it. Spring Security do ta procesojë këtë. -->
-<form th:action="@{/admin/login}" method="post">
-    <div>
-        <label for="email">Email:</label>
-        <!-- Emri i fushës duhet të jetë "email" sepse e kemi specifikuar te SecurityConfig -->
-        <input type="email" id="email" name="email" required autofocus />
-    </div>
-    <div>
-        <label for="password">Fjalëkalimi:</label>
-        <input type="password" id="password" name="password" required />
-    </div>
-    <div>
-        <button type="submit">Hyr</button>
-    </div>
+<h2 th:text="'Welcome ' + ${role} + '!'">Welcome Role!</h2>
+<form th:action="'/' + ${role} + '/login'" method="post">
+    <input type="text" name="username" placeholder="Email" required><br/>
+    <input type="password" name="password" placeholder="Password" required><br/>
+    <button type="submit">Login</button>
 </form>
-<br>
-<a th:href="@{/admin/signup}">Nuk ke llogari? Regjistrohu</a>
+<p th:if="${param.error}" style="color:red;">Invalid credentials</p>
+<p th:if="${param.logout}" style="color:green;">Logged out</p>
 </body>
 </html>

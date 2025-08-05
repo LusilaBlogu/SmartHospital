@@ -1,34 +1,13 @@
 <!DOCTYPE html>
-<html lang="sq" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <!-- Titulli vjen nga kontrolleri dhe është dinamik -->
-    <title th:text="${pageTitle}">Zgjidh Rolin</title>
-    <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #f0f2f5; }
-        .container { text-align: center; background: white; padding: 50px; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
-        h1 { color: #333; }
-        .role-buttons a { display: inline-block; text-decoration: none; padding: 14px 35px; margin: 10px; font-size: 16px; font-weight: 600; color: white; background-color: #007bff; border-radius: 8px; transition: background-color 0.3s ease, transform 0.2s ease; }
-        .role-buttons a:hover { background-color: #0056b3; transform: translateY(-2px); }
-    </style>
-</head>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Choose Role</title></head>
 <body>
-
-<div class="container">
-    <h1>Mirë se vini në SmartHospital!</h1>
-    <p>Ju lutem, zgjidhni rolin tuaj për të vazhduar:</p>
-
-    <div class="role-buttons">
-        <!--
-          Lidhjet janë të sakta! th:href="@{/admin/login}" do të krijojë automatikisht
-          URL-në /smarthospital/admin/login.
-        -->
-        <a th:href="@{/login}">Admin</a>
-        <a th:href="@{/login}">Doktor</a>
-        <a th:href="@{/login}">Infermier</a>
-        <a th:href="@{/login}">Pacient</a>
-    </div>
-</div>
-
+<h2>Choose Your Role</h2>
+<ul>
+    <li><a th:href="@{/login(role='admin')}">Login as Admin</a> | <a th:href="@{/signup(role='admin')}">Signup</a></li>
+    <li><a th:href="@{/login(role='doctor')}">Login as Doctor</a> | <a th:href="@{/signup(role='doctor')}">Signup</a></li>
+    <li><a th:href="@{/login(role='nurse')}">Login as Nurse</a> | <a th:href="@{/signup(role='nurse')}">Signup</a></li>
+    <li><a th:href="@{/login(role='patient')}">Login as Patient</a> | <a th:href="@{/signup(role='patient')}">Signup</a></li>
+</ul>
 </body>
 </html>
