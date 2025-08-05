@@ -48,7 +48,7 @@ public class SecurityConfig {
                                 "/doctor/login", "/doctor/signup",
                                 "/nurse/login", "/nurse/signup",
                                 "/patient/login", "/patient/signup",
-                                "/css/*", "/js/", "/images/*"
+                                "/css/**", "/js/**", "/images/**"
                         ).permitAll()
                         // Cakto rregullat e autorizimit për çdo rol
                         .requestMatchers("/admin/**").hasAuthority("Admin")

@@ -35,7 +35,7 @@ public class AdminController {
             model.addAttribute("admin", new Admin());
         }
         logger.debug("Showing admin login form.");
-        return "admin/login";
+        return "/login";
     }
 
     @PostMapping("/login")
@@ -82,7 +82,7 @@ public class AdminController {
             model.addAttribute("admin", new Admin());
         }
         logger.debug("Showing admin signup form.");
-        return "admin/signup";
+        return "/signup";
     }
 
     @PostMapping("/signup")
@@ -97,7 +97,7 @@ public class AdminController {
 
             redirectAttributes.addFlashAttribute("error", "Please fill in all fields.");
             redirectAttributes.addFlashAttribute("admin", admin);
-            return "redirect:/admin/signup";
+            return "redirect:/signup";
         }
 
 
@@ -106,13 +106,13 @@ public class AdminController {
             logger.warn("Admin signup failed. Email already exists: {}", admin.getEmail());
             redirectAttributes.addFlashAttribute("error", "This email already exist.");
             redirectAttributes.addFlashAttribute("admin", admin);
-            return "redirect:/admin/signup";
+            return "redirect:/signup";
         }
 
         adminService.saveAdmin(admin);
         logger.info("Admin registered successfully with email: {}", admin.getEmail());
         redirectAttributes.addFlashAttribute("signupSuccess", "The registration was completed successfully! You can log in now.");
-        return "redirect:/admin/dashboard";
+        return "redirect:/dashboard";
     }
 
     @GetMapping("/dashboard")

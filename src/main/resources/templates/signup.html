@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Signup</title></head>
+<body>
+<h2 th:text="'Register as ' + ${role} + '!'">Register as Role!</h2>
+<form th:action="'/' + ${role} + '/signup'" method="post">
+    <input type="text" name="name" placeholder="Full Name" required><br/>
+    <input type="text" name="username" placeholder="Username" required><br/>
+    <input type="email" name="email" placeholder="Email" required><br/>
+    <input type="password" name="password" placeholder="Password" required><br/>
+    <button type="submit">Register</button>
+</form>
+<p th:if="${error}" style="color:red;" th:text="${error}"></p>
+<p th:if="${signupSuccess}" style="color:green;" th:text="${signupSuccess}"></p>
+</body>
+</html>
